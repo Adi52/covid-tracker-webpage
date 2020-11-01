@@ -1,11 +1,11 @@
-import DrawChart from "./DrawChart";
-
 export default class GetCovidData {
-    constructor() {
+    constructor(countryCode, chart) {
         // daily
         this.dailyNewCasesDate = [];
         this.dailyNewCasesCases = [];
-        this.getDailyNewCasesFromDayOne('pl'); // this will set auto
+        this.getDailyNewCasesFromDayOne(countryCode); // this will set auto
+
+        this.chart = chart;
     }
 
     getDailyNewCasesFromDayOne(code) {
@@ -22,19 +22,21 @@ export default class GetCovidData {
             })
             .then(() => {
                 // to trzeba będzie usunąć -> błędne dane w api na 01.11?
-                this.dailyNewCasesDate.splice(0,1);
-                this.dailyNewCasesCases.splice(0,1);
+                // this.dailyNewCasesDate.splice(0,1);
+                // this.dailyNewCasesCases.splice(0,1);
                 // ^
 
                 this.dailyNewCasesDate = this.dailyNewCasesDate.reverse();
                 this.dailyNewCasesCases = this.dailyNewCasesCases.reverse();
 
-                let dailyNewCases = {
+                this.chart.covidInfo = {
                     date: this.dailyNewCasesDate,
                     cases: this.dailyNewCasesCases
-                }
+                };
 
-                let drawChart = new DrawChart(dailyNewCases);
+                if (this.chart.myChart !== undefined) this.chart.myChart.destroy();
+
+                this.chart.drawChart();
             })
     }
 }

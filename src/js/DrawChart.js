@@ -8,11 +8,10 @@ export default class DrawChart {
 
         this.covidInfo = covidInfo;
         this.configureCustomEffects();
-        this.drawChart();
     }
 
     drawChart () {
-        let myChart = new Chart(this.ctx, {
+        this.myChart = new Chart(this.ctx, {
             type: 'line',
             data: {
                 // labels: dailyNewCases['date'],
@@ -65,6 +64,13 @@ export default class DrawChart {
                 },
             }
         });
+    }
+
+    updateData(covidInfo) {
+        console.log(this.myChart.config.data);
+        this.myChart.config.data.datasets.data = covidInfo.cases;
+        this.myChart.config.data.labels = covidInfo.date;
+        this.myChart.update();
     }
 
     configureCustomEffects() {

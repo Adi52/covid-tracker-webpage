@@ -22,6 +22,8 @@ const htmlPluginEntries = templateFiles.map((template) => new HTMLWebpackPlugin(
 }));
 
 module.exports = {
+  devtool: "source-map",
+
   entry: {
     app: path.resolve(environment.paths.source, 'js', 'app.js'),
   },
