@@ -1,7 +1,9 @@
 
 
 export default class SearchBar {
-    constructor() {
+    constructor(main) {
+        this.main = main;
+
         this.searchBar = document.querySelector('.input-country')
         this.ulCountries = document.querySelector('.countries ul')
 

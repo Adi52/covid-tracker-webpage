@@ -1,11 +1,12 @@
 export default class GetCovidData {
-    constructor(countryCode, chart) {
+    constructor(countryCode, main) {
+        this.main = main;
         // daily
         this.dailyNewCasesDate = [];
         this.dailyNewCasesCases = [];
         this.getDailyNewCasesFromDayOne(countryCode); // this will set auto
 
-        this.chart = chart;
+        this.chart = main.drawChart;
     }
 
     getDailyNewCasesFromDayOne(code) {

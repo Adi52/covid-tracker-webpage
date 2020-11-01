@@ -7,11 +7,13 @@ import GetCovidData from "./GetCovidData";
 
 
 export default class Map {
-    constructor(chart) {
+    constructor(main) {
+        this.main = main;
+
         this.drawMap();
         this.checkedCountryCode = '';
 
-        this.chartLine = chart;
+        // this.chartLine = main.drawChart;
     }
 
     drawMap() {
@@ -37,7 +39,8 @@ export default class Map {
         this.polygonTemplate.events.on("hit", (ev) => {
             ev.target.series.chart.zoomToMapObject(ev.target);
             this.checkedCountryCode = ev.target.dataItem.dataContext.id;
-            this.drawChart = new GetCovidData(this.checkedCountryCode, this.chartLine);
+
+            this.drawChart = new GetCovidData(this.checkedCountryCode, this.main);
         })
 
         /* Create hover state and set alternative fill color */
@@ -52,3 +55,15 @@ export default class Map {
     }
 }
 
+
+
+// Może być przydatne do kolorowania kraju
+// import * as am4core from "@amcharts/amcharts4/core";
+// map.polygonSeries.data = [{
+//     "id": "US",
+//     "name": "United States",
+//     "value": 100,
+//     "fill": am4core.color("#F05C5C")
+// }]
+//
+// map.polygonTemplate.propertyFields.fill = "fill";
