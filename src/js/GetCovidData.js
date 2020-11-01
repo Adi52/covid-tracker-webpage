@@ -5,7 +5,7 @@ export default class GetCovidData {
         // daily
         this.dailyNewCasesDate = [];
         this.dailyNewCasesCases = [];
-        this.getDailyNewCasesFromDayOne('us'); // this will set auto
+        this.getDailyNewCasesFromDayOne('pl'); // this will set auto
     }
 
     getDailyNewCasesFromDayOne(code) {

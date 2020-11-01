@@ -18,8 +18,8 @@ export default class DrawChart {
                 // labels: dailyNewCases['date'],
                 labels: this.covidInfo.date,
                 datasets: [{
-                    label: 'daily new cases',
-                    // data: dailyNewCases['cases'],
+                    label: 'Daily new cases',
+
                     data: this.covidInfo.cases,
                     backgroundColor: [
                         'transparent',
@@ -33,11 +33,35 @@ export default class DrawChart {
                 }]
             },
             options: {
+                legend: {
+                    display: false
+                },
+                maintainAspectRatio: false,
                 tooltips: {
                     mode: 'index',
                     intersect: false,
                     // position: 'custom'
                     position: 'nearest',
+                },
+
+                scales: {
+                    xAxes: [{
+                        offset: true,
+                        gridLines: {
+                            display: false,
+                        },
+                        ticks: {
+                            labelOffset: 30,
+                            maxTicksLimit: 5,
+                            maxRotation: 0,
+                            minRotation: 0,
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            maxTicksLimit: 5,
+                        }
+                    }]
                 },
             }
         });
