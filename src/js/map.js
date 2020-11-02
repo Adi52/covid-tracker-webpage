@@ -13,6 +13,8 @@ export default class Map {
         this.drawMap();
         this.checkedCountryCode = '';
 
+        this.arrIsActiveElements = [];
+
         // this.chartLine = main.drawChart;
     }
 
@@ -40,12 +42,21 @@ export default class Map {
             ev.target.series.chart.zoomToMapObject(ev.target);
             this.checkedCountryCode = ev.target.dataItem.dataContext.id;
 
+            setTimeout(() => {
+                this.arrIsActiveElements.push(ev.target);
+                ev.target.isActive = true;
+            }, 1000);
+
             this.drawChart = new GetCovidData(this.checkedCountryCode, this.main);
         })
 
         /* Create hover state and set alternative fill color */
-        var hs = this.polygonTemplate.states.create("hover");
+        let hs = this.polygonTemplate.states.create("hover");
         hs.properties.fill = am4core.color("grey");
+
+
+        let as = this.polygonTemplate.states.create("active");
+        as.properties.fill = am4core.color("#7B3625");
 
 
         // Add Western European countries

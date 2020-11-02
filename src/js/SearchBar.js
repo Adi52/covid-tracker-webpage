@@ -1,3 +1,5 @@
+import GetCovidData from "./GetCovidData";
+import * as am4core from "@amcharts/amcharts4/core";
 
 
 export default class SearchBar {
@@ -32,20 +34,37 @@ export default class SearchBar {
             })
     }
 
+    getData(code) {
+        new GetCovidData(code, this.main);
+
+        // zoom in map
+        let countryCodeOnMap = this.main.map.polygonSeries.getPolygonById(code);
+        this.main.map.chart.zoomToMapObject(countryCodeOnMap)
+
+        // change bgcolor current country
+        setTimeout(() => {
+            this.main.map.arrIsActiveElements.push(countryCodeOnMap);
+            countryCodeOnMap.isActive = true;
+        }, 1000);
+    }
+
     search(e) {
         e.preventDefault();
         this.ulCountries.textContent = '';
         const searchText = e.target.value.toLowerCase();
-
         let countries = this.countryNames.filter(country => country.toLowerCase().includes(searchText));
 
         countries.forEach(country => {
             let index = this.countryNames.indexOf(country);
-
             const li = document.createElement('li');
-
-            li.innerHTML = `<img src="${this.countryFlagsImg[index]}"> <p>${this.countryNames[index]}, ${this.countryCodes[index]}</p>`;
+            li.innerHTML = `<img src="${this.countryFlagsImg[index]}"> <p>${this.countryNames[index]}</p>`;
             this.ulCountries.appendChild(li);
+
+            li.addEventListener('click', () => {
+                this.getData(this.countryCodes[index]);
+                this.ulCountries.textContent = '';
+                e.target.value = '';
+            })
         })
 
 

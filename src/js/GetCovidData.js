@@ -1,3 +1,5 @@
+import * as am4core from "@amcharts/amcharts4/core";
+
 export default class GetCovidData {
     constructor(countryCode, main) {
         this.main = main;
@@ -36,6 +38,9 @@ export default class GetCovidData {
                 };
 
                 if (this.chart.myChart !== undefined) this.chart.myChart.destroy();
+
+                // Remove active color from map;
+                this.main.map.arrIsActiveElements.forEach(el => el.isActive = false);
 
                 this.chart.drawChart();
             })

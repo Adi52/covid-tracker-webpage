@@ -66,13 +66,6 @@ export default class DrawChart {
         });
     }
 
-    updateData(covidInfo) {
-        console.log(this.myChart.config.data);
-        this.myChart.config.data.datasets.data = covidInfo.cases;
-        this.myChart.config.data.labels = covidInfo.date;
-        this.myChart.update();
-    }
-
     configureCustomEffects() {
         Chart.plugins.register({
             afterDatasetsDraw: function(chart) {
