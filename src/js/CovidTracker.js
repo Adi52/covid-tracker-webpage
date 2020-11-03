@@ -14,5 +14,18 @@ export default class CovidTracker {
 
         // Draw line chart with global data at start
         this.getCovidData.getDailyGlobalTimeline();
+
+        this.tileDeaths = document.querySelector('.tile__deaths');
+        this.tileConfirmed = document.querySelector('.tile__confirmed');
+        this.tileActive = document.querySelector('.tile__active');
+        this.tileRecovered = document.querySelector('.tile__recovered');
+
+    }
+
+    updateTiles(tilesData) {
+        this.tileDeaths.textContent = tilesData['deaths'];
+        this.tileConfirmed.textContent = tilesData['confirmed'];
+        this.tileActive.textContent = tilesData['active'];
+        this.tileRecovered.textContent = tilesData['recovered'];
     }
 }
