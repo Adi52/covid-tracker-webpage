@@ -1,6 +1,3 @@
-import GetCovidData from "./GetCovidData";
-import * as am4core from "@amcharts/amcharts4/core";
-
 
 export default class SearchBar {
     constructor(main) {
@@ -35,7 +32,7 @@ export default class SearchBar {
     }
 
     getData(code) {
-        new GetCovidData(code, this.main);
+        this.main.getCovidData.getDailyNewCasesTimeline(code);
 
         // zoom in map
         let countryCodeOnMap = this.main.map.polygonSeries.getPolygonById(code);

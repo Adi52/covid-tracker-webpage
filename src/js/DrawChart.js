@@ -2,24 +2,25 @@ import Chart from 'chart.js';
 
 
 export default class DrawChart {
-    constructor(covidInfo) {
+    constructor() {
         this.color = 'rgba(37,174,255)';
         this.ctx = document.getElementById('myChart').getContext('2d');
 
-        this.covidInfo = covidInfo;
         this.configureCustomEffects();
     }
 
-    drawChart () {
+    drawChart(covidInfo) {
+        if (this.myChart !== undefined) this.myChart.destroy();
+
         this.myChart = new Chart(this.ctx, {
             type: 'line',
             data: {
                 // labels: dailyNewCases['date'],
-                labels: this.covidInfo.date,
+                labels: covidInfo.date,
                 datasets: [{
                     label: 'Daily new cases',
 
-                    data: this.covidInfo.cases,
+                    data: covidInfo.cases,
                     backgroundColor: [
                         'transparent',
                     ],
