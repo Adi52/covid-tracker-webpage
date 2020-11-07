@@ -3,8 +3,8 @@ export default class SearchBar {
     constructor(main) {
         this.main = main;
 
-        this.searchBar = document.querySelector('.input-country')
-        this.ulCountries = document.querySelector('.countries ul')
+        this.searchBar = document.querySelector('.search__input-country')
+        this.ulCountries = document.querySelector('.search__countries ul')
 
         this.countryNames = [];
         this.countryCodes = [];
@@ -42,7 +42,7 @@ export default class SearchBar {
         setTimeout(() => {
             this.main.map.arrIsActiveElements.push(countryCodeOnMap);
             countryCodeOnMap.isActive = true;
-        }, 1000);
+        }, 500);
     }
 
     search(e) {

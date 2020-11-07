@@ -70,15 +70,15 @@ export default class GetCovidData {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
             })
+
+        // you must add spinner here later
     }
 
 
 
     callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases) {
-        // to trzeba będzie usunąć -> błędne dane w api na 01.11?
-        dailyNewCasesDate.splice(0,1);
-        dailyNewCasesCases.splice(0,1);
-
+        // dailyNewCasesDate.splice(0,1);
+        // dailyNewCasesCases.splice(0,1);
 
         let covidInfo = {
             date: dailyNewCasesDate.reverse(),

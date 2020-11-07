@@ -1,0 +1,32 @@
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  width: $main-spacing * 19;
+  height: $header-height;
+
+  margin-left: $main-spacing;
+
+  &__image {
+    height: 60%;
+  }
+
+  &__line {
+    height: $logo-font-size;
+    width: 1px;
+    background-color: $logo-text-color;
+    filter: blur(0.5px);
+  }
+
+  &__text {
+    font-family: $logo-font-family;
+    color: $logo-text-color;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+}

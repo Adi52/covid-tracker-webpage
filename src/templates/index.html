@@ -3,47 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>webpack starterkit</title>
+  <title>Covid19</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <div class="corona-tracker">
-    <input class="input-country">
-    <div class="countries">
-      <ul>
-
-      </ul>
-    </div>
-
-
+<header class="header">
+  <div class="logo">
+    <img class="logo__image" src="images/content/logo.svg" alt="">
+    <span class="logo__line"></span>
+    <h1 class="logo__text">Covid-19</h1>
   </div>
+</header>
 
-  <!--line chart-->
-  <div class="chart-container" style="position: relative; width:700px">
-    <canvas id="myChart" width="500" height="300"></canvas>
-  </div>
+<!--Map-->
 
-  <!--Map-->
+<section class="map">
   <div id="chartdiv"></div>
 
-  <div class="tiles">
-    <div class="tile">
-      Deaths:
-      <p class="tile__deaths"></p>
-    </div>
-    <div class="tile">
-      Confirmed:
-      <p class="tile__confirmed"></p>
-    </div>
-    <div class="tile">
-      Active:
-      <p class="tile__active"></p>
-    </div>
-    <div class="tile">
-      Recovered:
-      <p class="tile__recovered"></p>
+  <div class="search">
+    <input class="search__input-country">
+    <div class="search__countries">
+      <ul></ul>
     </div>
   </div>
+</section>
+
+
+<!--  &lt;!&ndash;line chart&ndash;&gt;-->
+<!--  <div class="chart-container" style="position: relative; width:700px">-->
+<!--    <canvas id="myChart" width="500" height="300"></canvas>-->
+<!--  </div>-->
+
+
+
+<!--  <div class="tiles">-->
+<!--    <div class="tile">-->
+<!--      Deaths:-->
+<!--      <p class="tile__deaths"></p>-->
+<!--    </div>-->
+<!--    <div class="tile">-->
+<!--      Confirmed:-->
+<!--      <p class="tile__confirmed"></p>-->
+<!--    </div>-->
+<!--    <div class="tile">-->
+<!--      Active:-->
+<!--      <p class="tile__active"></p>-->
+<!--    </div>-->
+<!--    <div class="tile">-->
+<!--      Recovered:-->
+<!--      <p class="tile__recovered"></p>-->
+<!--    </div>-->
+<!--  </div>-->
 
 </body>
 </html>

@@ -51,10 +51,14 @@ export default class DrawChart {
                             display: false,
                         },
                         ticks: {
-                            labelOffset: 30,
+                            // labelOffset: 30,
                             maxTicksLimit: 5,
                             maxRotation: 0,
                             minRotation: 0,
+                            callback: function(value) {
+                                value = value.substring(5).replace('-', '/');
+                                return value;
+                            }
                         }
                     }],
                     yAxes: [{

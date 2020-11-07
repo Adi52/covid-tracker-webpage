@@ -31,7 +31,8 @@ export default class Map {
         /* Configure series */
         this.polygonTemplate = this.polygonSeries.mapPolygons.template;
         this.polygonTemplate.tooltipText = "{name}";
-        this.polygonTemplate.fill = am4core.color("rgb(37,174,255)");
+        this.polygonTemplate.fill = am4core.color("#193363");
+        this.polygonTemplate.stroke = am4core.color("#31445C");
         this.polygonTemplate.events.on("hit", (ev) => {
             ev.target.series.chart.zoomToMapObject(ev.target);
             let checkedCountryCode = ev.target.dataItem.dataContext.id;
@@ -39,7 +40,7 @@ export default class Map {
             setTimeout(() => {
                 this.arrIsActiveElements.push(ev.target);
                 ev.target.isActive = true;
-            }, 1000);
+            }, 500);
 
             this.main.getCovidData.getDailyNewCasesTimeline(checkedCountryCode);
             // this.drawChart = new GetCovidData(this.checkedCountryCode, this.main);
@@ -47,16 +48,14 @@ export default class Map {
 
         /* Create hover state and set alternative fill color */
         let hs = this.polygonTemplate.states.create("hover");
-        hs.properties.fill = am4core.color("grey");
+        hs.properties.fill = am4core.color("#EC5469");
 
 
         let as = this.polygonTemplate.states.create("active");
-        as.properties.fill = am4core.color("#7B3625");
-
+        as.properties.fill = am4core.color("#EC5469");
 
         // Add Western European countries
         this.polygonSeries.exclude = ["AQ"];
-
         this.chart.zoomControl = new am4maps.ZoomControl()
     }
 }
