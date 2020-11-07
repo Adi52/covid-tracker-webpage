@@ -11,7 +11,16 @@ export default class SearchBar {
         this.countryFlagsImg = [];
 
         this.getCountries();
+
+        window.addEventListener('click', (e) => {
+            // check if clicked outside .search
+            if (!document.querySelector('.search').contains(e.target)) {
+                this.resetUlList();
+            }
+        })
     }
+
+
 
     getCountries() {
         // get all countries to array (thanks it we can suggest country in search bar)
@@ -57,41 +66,40 @@ export default class SearchBar {
         }
     }
 
-    setBorderRadius() {
+    createAndDefineLi(country, e) {
+        let index = this.countryNames.indexOf(country);
+        const li = document.createElement('li');
+        this.shortenString(index);
 
+        li.innerHTML = `<img src="${this.countryFlagsImg[index]}"> <p>${this.countryNames[index]}</p>`;
+        this.ulCountries.appendChild(li);
+
+        li.addEventListener('click', () => {
+            this.getData(this.countryCodes[index]);
+            this.ulCountries.textContent = '';
+            e.target.value = this.countryNames[index];
+        })
+    }
+
+    resetUlList() {
+        this.ulCountries.textContent = '';
+        this.searchBar.style.borderRadius = '20px';
     }
 
     search(e) {
         e.preventDefault();
         this.ulCountries.textContent = '';
         const searchText = e.target.value.toLowerCase();
+
         let countries = this.countryNames.filter(country => country.toLowerCase().includes(searchText));
 
         countries.forEach(country => {
-            let index = this.countryNames.indexOf(country);
-            const li = document.createElement('li');
-            this.shortenString(index);
-
-            li.innerHTML = `<img src="${this.countryFlagsImg[index]}"> <p>${this.countryNames[index]}</p>`;
-            this.ulCountries.appendChild(li);
-
+            this.createAndDefineLi(country, e);
             this.searchBar.style.borderRadius = '20px 20px 0 0';
-
-            li.addEventListener('click', () => {
-                this.getData(this.countryCodes[index]);
-                this.ulCountries.textContent = '';
-                e.target.value = '';
-            })
         })
 
-        if (this.ulCountries.getElementsByTagName("li").length === 0) {
-            console.log('?')
-            this.searchBar.style.borderRadius = '20px';
-        }
-
-        if (searchText === '') {
-            this.ulCountries.textContent = '';
-            this.searchBar.style.borderRadius = '20px';
+        if (this.ulCountries.getElementsByTagName("li").length === 0 || searchText === '') {
+            this.resetUlList();
         }
     }
 }
