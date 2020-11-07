@@ -3,7 +3,7 @@ export default class SearchBar {
     constructor(main) {
         this.main = main;
 
-        this.searchBar = document.querySelector('.search__input-country')
+        this.searchBar = document.querySelector('.search__bar--input')
         this.ulCountries = document.querySelector('.search__countries ul')
 
         this.countryNames = [];
@@ -45,6 +45,22 @@ export default class SearchBar {
         }, 500);
     }
 
+    shortenString(index) {
+        if (this.countryNames[index].includes("(")) {
+            let i = this.countryNames[index].indexOf('(');
+            this.countryNames[index] = this.countryNames[index].substring(0, i);
+        } else if (this.countryNames[index].includes(",")) {
+            let i = this.countryNames[index].indexOf(',');
+            this.countryNames[index] = this.countryNames[index].substring(0, i);
+        } else if (this.countryNames[index].length > 20) {
+            this.countryNames[index] = this.countryNames[index].substring(0, 20) + '...';
+        }
+    }
+
+    setBorderRadius() {
+
+    }
+
     search(e) {
         e.preventDefault();
         this.ulCountries.textContent = '';
@@ -54,8 +70,12 @@ export default class SearchBar {
         countries.forEach(country => {
             let index = this.countryNames.indexOf(country);
             const li = document.createElement('li');
+            this.shortenString(index);
+
             li.innerHTML = `<img src="${this.countryFlagsImg[index]}"> <p>${this.countryNames[index]}</p>`;
             this.ulCountries.appendChild(li);
+
+            this.searchBar.style.borderRadius = '20px 20px 0 0';
 
             li.addEventListener('click', () => {
                 this.getData(this.countryCodes[index]);
@@ -64,9 +84,14 @@ export default class SearchBar {
             })
         })
 
+        if (this.ulCountries.getElementsByTagName("li").length === 0) {
+            console.log('?')
+            this.searchBar.style.borderRadius = '20px';
+        }
 
         if (searchText === '') {
             this.ulCountries.textContent = '';
+            this.searchBar.style.borderRadius = '20px';
         }
     }
 }

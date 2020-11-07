@@ -5,6 +5,7 @@
 
 
 #chartdiv {
-  height: 300px;
-  background-color: #31445C;
+  height: 40vh;
+  background-color: $foreground-color;
+  border-bottom: 2px solid $header-background-color;
 }
