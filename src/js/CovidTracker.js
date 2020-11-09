@@ -15,7 +15,8 @@ export default class CovidTracker {
         // Draw line chart with global data at start
         this.getCovidData.getDailyGlobalTimeline();
 
-
+        this.currentCountryName = document.querySelector('.data__current-country__name');
+        this.currentCountryFlag = document.querySelector('.data__current-country__image');
 
         // Tiles
         this.tileDeaths = document.querySelector('.tile__left-data__cases.deaths');
@@ -32,15 +33,32 @@ export default class CovidTracker {
 
     }
 
+    updateCountryNameAndFlag(code, tilesData) {
+        let indexCountry = this.searchBar.countryCodes.indexOf(code);
+        this.currentCountryFlag.src = this.searchBar.countryFlagsImg[indexCountry];
+        this.currentCountryName.textContent = tilesData.country_name;
+    }
+
 
     setColorOfRatio(ratio, tile) {
-        if (ratio >= 0.2) {
-            tile.parentNode.style.color = 'red';
-        } else if (ratio < 0.2 && ratio > 0) {
-            tile.parentNode.style.color = 'grey';
+        if (tile === this.tileRecoveredRatio) {
+            if (ratio >= 0.2) {
+                tile.parentNode.style.color = 'green';
+            } else if (ratio < 0.2 && ratio > 0) {
+                tile.parentNode.style.color = 'grey';
+            } else {
+                tile.parentNode.style.color = 'red';
+            }
         } else {
-            tile.parentNode.style.color = 'green';
+            if (ratio >= 0.2) {
+                tile.parentNode.style.color = 'red';
+            } else if (ratio < 0.2 && ratio > 0) {
+                tile.parentNode.style.color = 'grey';
+            } else {
+                tile.parentNode.style.color = 'green';
+            }
         }
+
     }
 
     calculateRatioToTiles(oldCases, newCases, tile) {
@@ -54,7 +72,7 @@ export default class CovidTracker {
 
         this.setColorOfRatio(ratio, tile);
 
-        return ratio.toFixed(2);
+        return ratio.toFixed(2) + '%';
     }
 
     updateTiles(tilesData) {

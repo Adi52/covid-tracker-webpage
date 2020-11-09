@@ -3,7 +3,7 @@ import Chart from 'chart.js';
 
 export default class DrawChart {
     constructor() {
-        this.color = 'rgba(37,174,255)';
+        this.color = '#EC5469';
         this.ctx = document.getElementById('myChart').getContext('2d');
 
         this.configureCustomEffects();
@@ -27,7 +27,7 @@ export default class DrawChart {
                     borderColor: [
                         this.color,
                     ],
-                    borderWidth: 3,
+                    borderWidth: 2,
                     pointRadius: 0,
 
                 }]
@@ -49,9 +49,12 @@ export default class DrawChart {
                         offset: true,
                         gridLines: {
                             display: false,
+                            color: '#0F2642',
                         },
                         ticks: {
                             // labelOffset: 30,
+                            color: '#0F2642',
+                            fontColor: '#999999',
                             maxTicksLimit: 5,
                             maxRotation: 0,
                             minRotation: 0,
@@ -62,7 +65,11 @@ export default class DrawChart {
                         }
                     }],
                     yAxes: [{
+                        gridLines: {
+                            color: '#0F2642',
+                        },
                         ticks: {
+                            fontColor: '#999999',
                             maxTicksLimit: 5,
                         }
                     }]

@@ -30,6 +30,7 @@ export default class SearchBar {
             })
             .then(countries => {
                 countries.forEach(country => {
+                    if (country['alpha2Code'] )
                     this.countryNames.push(country['name']);
                     this.countryCodes.push(country['alpha2Code']);
                     this.countryFlagsImg.push(country['flag']);

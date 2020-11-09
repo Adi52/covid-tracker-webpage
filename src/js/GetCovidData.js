@@ -51,6 +51,7 @@ export default class GetCovidData {
         let dailyNewCasesCases = [];
 
         let tilesData = {
+            'country_name': [],
             'deaths': [],
             'confirmed': [],
             'active': [],
@@ -72,6 +73,8 @@ export default class GetCovidData {
 
                 let latest_data = data['data']['latest_data'];
                 let timeline = data['data']['timeline'][0];
+                tilesData.country_name.push(data['data']['name']);
+
                 tilesData.deaths.push(latest_data['deaths']);
                 tilesData.confirmed.push(latest_data['confirmed']);
                 tilesData.active.push(timeline['active']);
@@ -83,6 +86,7 @@ export default class GetCovidData {
 
             })
             .then(() => {
+                this.main.updateCountryNameAndFlag(code, tilesData);
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
             })
@@ -93,8 +97,8 @@ export default class GetCovidData {
 
 
     callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases) {
-        // dailyNewCasesDate.splice(0,1);
-        // dailyNewCasesCases.splice(0,1);
+        dailyNewCasesDate.splice(0,1);
+        dailyNewCasesCases.splice(0,1);
 
         let covidInfo = {
             date: dailyNewCasesDate.reverse(),

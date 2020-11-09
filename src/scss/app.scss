@@ -30,10 +30,9 @@
 @import 'logo';
 @import 'map';
 @import 'search';
-@import 'chart';
 @import 'data';
 
 
 body {
-  background-color: darken(#fff,30%);
+  background-color: $body-background-color;
 }
