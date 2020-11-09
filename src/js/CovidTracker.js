@@ -15,15 +15,46 @@ export default class CovidTracker {
         // Draw line chart with global data at start
         this.getCovidData.getDailyGlobalTimeline();
 
-        // Current country display
 
 
         // Tiles
-        this.tileDeaths = document.querySelector('.tile__deaths');
-        this.tileConfirmed = document.querySelector('.tile__confirmed');
-        this.tileActive = document.querySelector('.tile__active');
-        this.tileRecovered = document.querySelector('.tile__recovered');
+        this.tileDeaths = document.querySelector('.tile__left-data__cases.deaths');
+        this.tileDeathsRatio = document.querySelector('.tile__right-data__difference.deaths');
 
+        this.tileConfirmed = document.querySelector('.tile__left-data__cases.confirmed');
+        this.tileConfirmedRatio = document.querySelector('.tile__right-data__difference.confirmed');
+
+        this.tileActive = document.querySelector('.tile__left-data__cases.active');
+
+        this.tileRecovered = document.querySelector('.tile__left-data__cases.recovered');
+        this.tileRecoveredRatio = document.querySelector('.tile__right-data__difference.recovered');
+
+
+    }
+
+
+    setColorOfRatio(ratio, tile) {
+        if (ratio >= 0.2) {
+            tile.parentNode.style.color = 'red';
+        } else if (ratio < 0.2 && ratio > 0) {
+            tile.parentNode.style.color = 'grey';
+        } else {
+            tile.parentNode.style.color = 'green';
+        }
+    }
+
+    calculateRatioToTiles(oldCases, newCases, tile) {
+        //oldCases - in api is summed with newCases
+        let currentCases = oldCases - newCases;
+        let ratio = 0;
+        if (currentCases !== 0) {
+            // don't let divide by zero
+            ratio = oldCases * 100 / currentCases - 100;
+        }
+
+        this.setColorOfRatio(ratio, tile);
+
+        return ratio.toFixed(2);
     }
 
     updateTiles(tilesData) {
@@ -31,5 +62,9 @@ export default class CovidTracker {
         this.tileConfirmed.textContent = tilesData['confirmed'];
         this.tileActive.textContent = tilesData['active'];
         this.tileRecovered.textContent = tilesData['recovered'];
+
+        this.tileDeathsRatio.textContent = this.calculateRatioToTiles(tilesData['deaths'], tilesData['new_deaths'], this.tileDeathsRatio);
+        this.tileRecoveredRatio.textContent = this.calculateRatioToTiles(tilesData['recovered'], tilesData['new_recovered'], this.tileRecoveredRatio);
+        this.tileConfirmedRatio.textContent = this.calculateRatioToTiles(tilesData['confirmed'], tilesData['new_confirmed'], this.tileConfirmedRatio);
     }
 }

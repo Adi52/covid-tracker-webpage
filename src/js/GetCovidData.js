@@ -16,6 +16,9 @@ export default class GetCovidData {
             'confirmed': [],
             'active': [],
             'recovered': [],
+            'new_deaths' : [],
+            'new_recovered' : [],
+            'new_confirmed' : [],
         }
 
         fetch('https://corona-api.com/timeline')
@@ -32,6 +35,10 @@ export default class GetCovidData {
                 tilesData.confirmed.push(data['data'][0]['confirmed']);
                 tilesData.active.push(data['data'][0]['active']);
                 tilesData.recovered.push(data['data'][0]['recovered']);
+                tilesData.new_deaths.push(data['data'][0]['new_deaths']);
+                tilesData.new_recovered.push(data['data'][0]['new_recovered']);
+                tilesData.new_confirmed.push(data['data'][0]['new_confirmed']);
+
             })
             .then(() => {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
@@ -48,6 +55,9 @@ export default class GetCovidData {
             'confirmed': [],
             'active': [],
             'recovered': [],
+            'new_deaths' : [],
+            'new_recovered' : [],
+            'new_confirmed' : [],
         }
 
         fetch(`https://corona-api.com/countries/${code}`)
@@ -61,10 +71,16 @@ export default class GetCovidData {
                 })
 
                 let latest_data = data['data']['latest_data'];
+                let timeline = data['data']['timeline'][0];
                 tilesData.deaths.push(latest_data['deaths']);
                 tilesData.confirmed.push(latest_data['confirmed']);
-                tilesData.active.push(latest_data['active']);
+                tilesData.active.push(timeline['active']);
                 tilesData.recovered.push(latest_data['recovered']);
+
+                tilesData.new_deaths.push(timeline['new_deaths']);
+                tilesData.new_recovered.push(timeline['new_recovered']);
+                tilesData.new_confirmed.push(timeline['new_confirmed']);
+
             })
             .then(() => {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);

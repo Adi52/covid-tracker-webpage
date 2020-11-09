@@ -6,6 +6,6 @@
 
 #chartdiv {
   height: 40vh;
+  max-width: 100vw;
   background-color: $foreground-color;
-  border-bottom: 2px solid $header-background-color;
 }

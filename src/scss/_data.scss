@@ -3,8 +3,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  justify-content: flex-start;
+
   background-color: $foreground-color;
-  border-radius: 20px;
+  border-radius: $main-spacing;
   position: relative;
   width: 99vw;
   margin: 90px auto;
@@ -21,43 +24,75 @@
 
     &__image {
       border-radius: 50%;
-      //position: absolute;
       transform: translateY(-50%);
       width: 100%;
       max-width: 200px;
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
     }
 
     &__name {
+      transform: translateY(-30%);
       font-family: $logo-font-family;
       text-transform: uppercase;
       font-size: 2rem;
-      color: white;
+      color: $logo-text-color;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-
-
   }
 
   &__tiles {
+    margin-bottom: 150px;
+
+
     margin-top: $main-spacing * 2;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
+    height: auto;
 
     & .tile {
-      flex-basis: 40%;
+      flex-basis: 45%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+
+      margin-bottom: $main-spacing;
       color: white;
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
       text-transform: uppercase;
-      border-radius: $main-spacing;
-      text-align: center;
+      border-radius: $main-spacing / 2;
       background-color: $header-background-color;
-      margin: $main-spacing;
       padding: $main-spacing * 2;
-      //color: white;
+
+      &__left-data {
+
+        &__title {
+        color: darken(white, 40%);
+        font-weight: 600;
+        font-size: 0.8rem;
+        }
+        &__cases {
+          font-size: 1.2rem;
+        }
+      }
+
+
+
+      &__right-data {
+        display: flex;
+        align-items: center;
+        font-size: 0.7rem;
+
+        &__icon {
+          margin-right: $main-spacing/3;
+          font-size: 0.6rem;
+        }
+      }
     }
   }
 }
