@@ -46,13 +46,14 @@ export default class SearchBar {
 
         // zoom in map
         let countryCodeOnMap = this.main.map.polygonSeries.getPolygonById(code);
-        this.main.map.chart.zoomToMapObject(countryCodeOnMap)
+        this.main.map.chart.zoomToMapObject(countryCodeOnMap);
 
         // change bgcolor current country
         setTimeout(() => {
             this.main.map.arrIsActiveElements.push(countryCodeOnMap);
             countryCodeOnMap.isActive = true;
-        }, 500);
+            countryCodeOnMap.showTooltip();
+        }, 1000);
     }
 
     shortenString(index) {

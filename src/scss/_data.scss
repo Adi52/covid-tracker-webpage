@@ -26,7 +26,7 @@
       transform: translateY(-50%);
       width: 20%;
       border-radius: 50% 50%;
-      max-width: 200px;
+      max-width: 120px;
       box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
     }
 
@@ -67,7 +67,6 @@
       padding: $main-spacing * 1.5;
 
       &__left-data {
-
         &__title {
         color: $grey-text-color;
         font-weight: 600;
@@ -93,7 +92,7 @@
     }
   }
   &__chart-container {
-    margin: $main-spacing * 2 0;
-    width: 100%;
+    margin: $main-spacing * 2 auto;
+    width: 96%;
   }
 }

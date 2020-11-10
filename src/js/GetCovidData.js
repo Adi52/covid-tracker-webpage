@@ -90,8 +90,12 @@ export default class GetCovidData {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
             })
-
+            .catch(() => this.main.noData(code));
         // you must add spinner here later
+    }
+
+    getNews(code) {
+
     }
 
 

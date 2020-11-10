@@ -14,8 +14,9 @@ export default class Map {
 
     drawMap() {
         /* Create map instance */
-        this.chart = am4core.create("chartdiv", am4maps.MapChart);
+        am4core.options.disableHoverOnTransform = "touch";
 
+        this.chart = am4core.create("chartdiv", am4maps.MapChart);
         /* Set map definition */
         this.chart.geodata = am4geodata_worldLow;
 
@@ -30,17 +31,21 @@ export default class Map {
 
         /* Configure series */
         this.polygonTemplate = this.polygonSeries.mapPolygons.template;
-        this.polygonTemplate.tooltipText = "{name}";
+
+        this.polygonTemplate.tooltipHTML = `{name}`;
+        // this.polygonSeries.tooltip.label.padding(50, 0, 0, 0);
+
+
         this.polygonTemplate.fill = am4core.color("#193363");
         this.polygonTemplate.stroke = am4core.color("#31445C");
         this.polygonTemplate.events.on("hit", (ev) => {
             ev.target.series.chart.zoomToMapObject(ev.target);
             let checkedCountryCode = ev.target.dataItem.dataContext.id;
-
             setTimeout(() => {
+                ev.target.showTooltip();
                 this.arrIsActiveElements.push(ev.target);
                 ev.target.isActive = true;
-            }, 500);
+            }, 1000);
 
             this.main.getCovidData.getDailyNewCasesTimeline(checkedCountryCode);
             // this.drawChart = new GetCovidData(this.checkedCountryCode, this.main);
@@ -54,9 +59,22 @@ export default class Map {
         let as = this.polygonTemplate.states.create("active");
         as.properties.fill = am4core.color("#EC5469");
 
+
         // Add Western European countries
         this.polygonSeries.exclude = ["AQ"];
-        this.chart.zoomControl = new am4maps.ZoomControl()
+        this.polygonSeries.calculateVisualCenter = true;
+        this.polygonTemplate.tooltipPosition = "fixed";
+
+        this.polygonTemplate.tooltipX = this.polygonSeries.visualLatitude;
+        this.polygonTemplate.tooltipY = this.polygonSeries.visualLongitude;
+
+        this.chart.zoomControl = new am4maps.ZoomControl();
+
+        this.chart.zoomControl.minusButton.background.fill = am4core.color("#193363");
+        this.chart.zoomControl.plusButton.background.fill = am4core.color("#193363");
+
+        this.chart.zoomControl.plusButton.background.states.getKey("hover").properties.fill = am4core.color("#31445C");
+        this.chart.zoomControl.minusButton.background.states.getKey("hover").properties.fill = am4core.color("#31445C");
     }
 }
 

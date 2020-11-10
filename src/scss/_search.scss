@@ -47,7 +47,7 @@
     overflow: auto;
     max-height: 40vh;
     background-color: white;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
     border-radius: 0 0 $main-spacing*2 $main-spacing*2;
 
     width: 100%;
@@ -70,6 +70,8 @@
     img {
       margin-right: $main-spacing;
       width: $main-spacing*2;
+      border-radius: 3px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     }
   }
 }
