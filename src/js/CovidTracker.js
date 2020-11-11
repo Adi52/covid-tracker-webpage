@@ -14,6 +14,7 @@ export default class CovidTracker {
 
         // Draw line chart with global data at start
         this.getCovidData.getDailyGlobalTimeline();
+        this.getCovidData.getNews('')
 
         this.currentCountryName = document.querySelector('.data__current-country__name');
         this.currentCountryFlag = document.querySelector('.data__current-country__image');
@@ -31,12 +32,10 @@ export default class CovidTracker {
         this.tileRecoveredRatio = document.querySelector('.tile__right-data__difference.recovered');
 
         this.dataIcons = document.querySelectorAll('.tile__right-data__icon');
-    }
 
-    // getCountryName(code) {
-    //     let indexCode = this.searchBar.countryCodes.indexOf(code);
-    //     return this.searchBar.countryNames[indexCode];
-    // }
+        // News
+        this.newsContainer = document.querySelector('.news__articles');
+    }
 
     noData(code) {
         this.updateCountryNameAndFlag(code, false);
@@ -115,7 +114,41 @@ export default class CovidTracker {
             this.tileConfirmedRatio.textContent = this.calculateRatioToTiles(tilesData['confirmed'], tilesData['new_confirmed'], this.tileConfirmedRatio);
         }
     }
-}
 
-//covid news api:
-//https://newsapi.org/v2/top-headlines?country=us&q=covid&apiKey=fe50108c204c4630bd2f4cd277a76b67
+    addArticle(article) {
+        const newArticle = document.createElement('div');
+        const source = document.createElement('p');
+        const title = document.createElement('a');
+        const image = document.createElement('img');
+        const date = document.createElement('p');
+
+        newArticle.classList.add('newArticle');
+        source.classList.add('article__source');
+        title.classList.add('article__title');
+        image.classList.add('article__image');
+        date.classList.add('article__date');
+
+        source.textContent = article['source'];
+        title.textContent = article['title'];
+        title.href = article['url'];
+        image.src = article['image'];
+        date.textContent = article['date'];
+
+        this.newsContainer.appendChild(newArticle);
+        newArticle.appendChild(source);
+        newArticle.appendChild(title);
+        if (article['image'] !== 'https://s1.reutersmedia.net/resources_v2/images/rcom-default.png?w=800' &&
+        article['image'] !== null) {
+            newArticle.appendChild(image);
+        }
+        newArticle.appendChild(date);
+    }
+
+
+    updateNews(news) {
+        // Reset news
+        this.newsContainer.textContent = '';
+        news.forEach(article => this.addArticle(article));
+    }
+
+}

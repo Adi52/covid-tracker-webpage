@@ -89,16 +89,54 @@ export default class GetCovidData {
                 this.main.updateCountryNameAndFlag(code, tilesData);
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
+                this.getNews(tilesData['country_name']);
+
             })
-            .catch(() => this.main.noData(code));
+            .catch(() => {
+                this.getNews('');
+                this.main.noData(code);
+            });
         // you must add spinner here later
     }
 
-    getNews(code) {
+    getNews(countryName) {
+        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=fe50108c204c4630bd2f4cd277a76b67`;
+
+        if (countryName === '') {
+            // Get top headlines about covid
+            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=fe50108c204c4630bd2f4cd277a76b67'
+        }
+
+        let news = [];
+
+        fetch(link)
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+               let articles = data['articles'];
+               for (let i = 0; i <= 5; i++) {
+                   let article = {
+                       'source': articles[i]['source']['name'],
+                       'title': articles[i]['title'],
+                       'url': articles[i]['url'],
+                       'image': articles[i]['urlToImage'],
+                       'date': articles[i]['publishedAt']
+                   }
+                   news.push(article);
+               }
+
+            })
+            .then(() => {
+                this.main.updateNews(news);
+            })
+
+
+
+        //https://newsapi.org/v2/everything?language=en&q=covid+and+france%0D%0A&apiKey=fe50108c204c4630bd2f4cd277a76b67
+
 
     }
-
-
 
     callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases) {
         dailyNewCasesDate.splice(0,1);

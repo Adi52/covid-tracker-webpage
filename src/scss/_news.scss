@@ -1,0 +1,33 @@
+
+.news {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: flex-start;
+
+  background-color: $foreground-color;
+  border-radius: $main-spacing;
+  position: relative;
+  width: 99vw;
+  margin: $main-spacing * 3 auto;
+  min-height: 300px;
+
+  img {
+    width: 150px;
+  }
+
+  &__title {
+    width: 94%;
+    text-align: center;
+    margin-top: $main-spacing;
+    color: $logo-text-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+
+    //border-bottom: 1px solid $header-background-color;
+  }
+
+}
