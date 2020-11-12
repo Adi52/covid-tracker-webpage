@@ -118,11 +118,11 @@ export default class GetCovidData {
     }
 
     getNews(countryName) {
-        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=fe50108c204c4630bd2f4cd277a76b67`;
+        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=a97cc839dd2d47feb52542d84d29ae9e`;
 
         if (countryName === '') {
             // Get top headlines about covid
-            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=fe50108c204c4630bd2f4cd277a76b67'
+            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=a97cc839dd2d47feb52542d84d29ae9e'
         }
 
         let news = [];
@@ -154,7 +154,6 @@ export default class GetCovidData {
             .catch(() => {
                 this.main.newsContainer.textContent = 'No data';
                 this.hideLoading(this.newsLoader);
-                this.getNews('');
             });
     }
 
