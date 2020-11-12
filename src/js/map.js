@@ -75,6 +75,12 @@ export default class Map {
 
         this.chart.zoomControl.plusButton.background.states.getKey("hover").properties.fill = am4core.color("#31445C");
         this.chart.zoomControl.minusButton.background.states.getKey("hover").properties.fill = am4core.color("#31445C");
+
+        // Preloader
+        this.chart.events.on('ready', () => {
+            let loader = document.querySelector('.preloader');
+            loader.classList.remove('preloader--visible');
+        })
     }
 }
 

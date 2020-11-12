@@ -209,6 +209,3 @@ export default class CovidTracker {
         news.forEach(article => this.addArticle(article));
     }
 }
-
-
-// You must add loading screens, sticky input and desktop version!

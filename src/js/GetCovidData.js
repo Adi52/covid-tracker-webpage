@@ -5,6 +5,16 @@ export default class GetCovidData {
         // this.getDailyNewCasesTimeline(countryCode); // this will set auto
 
         this.chart = main.drawChart;
+        this.tilesLoader = document.querySelector('.data__tiles .preloader');
+        this.newsLoader = document.querySelector('.news .preloader');
+    }
+
+    showLoading(content) {
+        content.classList.add('preloader--visible');
+    }
+
+    hideLoading(content) {
+        content.classList.remove('preloader--visible');
     }
 
     getDailyGlobalTimeline() {
@@ -26,6 +36,7 @@ export default class GetCovidData {
                 return response.json();
             })
             .then(data => {
+                this.showLoading(this.tilesLoader);
                 data['data'].forEach(covidInfo => {
                     dailyNewCasesDate.push(covidInfo['date'])
                     dailyNewCasesCases.push(covidInfo['new_confirmed'])
@@ -43,6 +54,11 @@ export default class GetCovidData {
             .then(() => {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
+                this.hideLoading(this.tilesLoader);
+            })
+            .catch(() => {
+                this.main.noData('');
+                this.hideLoading(this.tilesLoader);
             })
     }
 
@@ -66,6 +82,7 @@ export default class GetCovidData {
                 return response.json();
             })
             .then(data => {
+                this.showLoading(this.tilesLoader);
                 data['data']['timeline'].forEach(covidInfo => {
                     dailyNewCasesDate.push(covidInfo['date'])
                     dailyNewCasesCases.push(covidInfo['new_confirmed'])
@@ -90,21 +107,22 @@ export default class GetCovidData {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
                 this.getNews(tilesData['country_name']);
-
+                this.hideLoading(this.tilesLoader);
             })
             .catch(() => {
                 this.getNews('');
                 this.main.noData(code);
+                this.hideLoading(this.tilesLoader);
             });
         // you must add spinner here later
     }
 
     getNews(countryName) {
-        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=a7bb7548ad4240a4a53a1671ddd253fe`;
+        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=fe50108c204c4630bd2f4cd277a76b67`;
 
         if (countryName === '') {
             // Get top headlines about covid
-            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=a7bb7548ad4240a4a53a1671ddd253fe'
+            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=fe50108c204c4630bd2f4cd277a76b67'
         }
 
         let news = [];
@@ -114,7 +132,8 @@ export default class GetCovidData {
                 return response.json();
             })
             .then(data => {
-               let articles = data['articles'];
+                this.showLoading(this.newsLoader);
+                let articles = data['articles'];
                for (let i = 0; i <= 4; i++) {
                    let article = {
                        'countryName': countryName,
@@ -130,9 +149,13 @@ export default class GetCovidData {
             })
             .then(() => {
                 this.main.updateNews(news);
+                this.hideLoading(this.newsLoader);
             })
-            .catch((error) => console.log(error));
-        //https://newsapi.org/v2/everything?language=en&q=covid+and+france%0D%0A&apiKey=fe50108c204c4630bd2f4cd277a76b67
+            .catch(() => {
+                this.main.newsContainer.textContent = 'No data';
+                this.hideLoading(this.newsLoader);
+                this.getNews('');
+            });
     }
 
     callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases) {

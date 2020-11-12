@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header class="header">
     <div class="logo">
       <a href="#" class="logo__link">
@@ -22,6 +21,10 @@
 
   <!--Map-->
   <section class="map">
+    <div class="preloader preloader--visible">
+      <div class="preloader__icon"><div></div><div></div><div></div><div></div></div>
+    </div>
+
     <div id="chartdiv"></div>
 
     <div class="search">
@@ -44,6 +47,11 @@
       </div>
 
       <div class="data__tiles">
+
+        <div class="preloader preloader--visible">
+          <div class="preloader__icon"><div></div><div></div><div></div><div></div></div>
+        </div>
+
         <div class="tile">
           <div class="tile__left-data">
             <h3 class="tile__left-data__title">Deaths</h3>
@@ -102,8 +110,10 @@
 
     <section class="news">
       <div class="news__title">Top news</div>
+      <div class="preloader preloader--visible">
+        <div class="preloader__icon"><div></div><div></div><div></div><div></div></div>
+      </div>
       <div class="news__articles">
-
       </div>
     </section>
   </section>
