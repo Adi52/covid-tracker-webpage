@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="readme_img/logo.png" width="300">
+  <img src="readme_img/logo.png" width="150">
   <h3 align="center">Covid19 - tracker</h3>
   <p align="center">
     <a href="https://adi52.github.io/covid-tracker-webpage/dist/index.html"><strong>View a Demo »</strong></a>
@@ -9,10 +9,10 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Availability](#availability)
+* [Availability](#availability-:computer:)
 * [Technologies](#technologies)
-* [API](#api)
-* [Setup](#setup)
+* [API](#API-:cloud:)
+* [Setup](#setup-:dvd:)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Screenshots](#screenshots)
