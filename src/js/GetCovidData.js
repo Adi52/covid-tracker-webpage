@@ -118,11 +118,14 @@ export default class GetCovidData {
     }
 
     getNews(countryName) {
-        let link = `https://newsapi.org/v2/everything?language=en&q=covid+and+${countryName}%0D%0A&apiKey=a97cc839dd2d47feb52542d84d29ae9e`;
+        let apiKey = '6c6ccbd94ec1f6ac621ac261d0c44074';
+
+        let link = `https://gnews.io/api/v4/search?lang=en&q=covid%20${countryName}&max=5&token=${apiKey}`;
+
 
         if (countryName === '') {
             // Get top headlines about covid
-            link = 'https://newsapi.org/v2/top-headlines?q=covid&apiKey=a97cc839dd2d47feb52542d84d29ae9e'
+            link = `https://gnews.io/api/v4/top-headlines?search?lang=en&q=covid&max=5&token=${apiKey}`;
         }
 
         let news = [];
@@ -140,7 +143,7 @@ export default class GetCovidData {
                        'source': articles[i]['source']['name'],
                        'title': articles[i]['title'],
                        'url': articles[i]['url'],
-                       'image': articles[i]['urlToImage'],
+                       'image': articles[i]['image'],
                        'date': articles[i]['publishedAt']
                    }
                    news.push(article);
@@ -154,6 +157,9 @@ export default class GetCovidData {
             .catch(() => {
                 this.main.newsContainer.textContent = 'No data';
                 this.hideLoading(this.newsLoader);
+                if (countryName !== '') {
+                    this.getNews('');
+                }
             });
     }
 
