@@ -49,10 +49,8 @@ export default class DrawChart {
                         offset: true,
                         gridLines: {
                             display: false,
-                            color: '#0F2642',
                         },
                         ticks: {
-                            // labelOffset: 30,
                             color: '#0F2642',
                             fontColor: '#999999',
                             maxTicksLimit: 5,
@@ -66,11 +64,17 @@ export default class DrawChart {
                     }],
                     yAxes: [{
                         gridLines: {
-                            color: '#0F2642',
+                            color: '#31445C',
+                            zeroLineColor: '#31445C',
                         },
                         ticks: {
                             fontColor: '#999999',
                             maxTicksLimit: 5,
+                            autoSkip: true,
+                            beginAtZero: false,
+                            callback: function(value) {
+                                return Math.abs(value) > 999 ? Math.sign(value)*((Math.abs(value)/1000).toFixed(1)) + 'k' : Math.sign(value)*Math.abs(value);
+                            }
                         }
                     }]
                 },
@@ -94,7 +98,7 @@ export default class DrawChart {
                     ctx.moveTo(x, topY);
                     ctx.lineTo(x, bottomY);
                     ctx.lineWidth = 2;
-                    ctx.strokeStyle = this.color;
+                    ctx.strokeStyle = '#999999';
                     ctx.stroke();
                     ctx.restore();
                 }

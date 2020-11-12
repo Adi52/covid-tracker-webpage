@@ -3,9 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   justify-content: flex-start;
-
   background-color: $foreground-color;
   border-radius: $main-spacing;
   position: relative;
@@ -30,7 +28,7 @@
     }
 
     &__name {
-      transform: translateY(-30%);
+      transform: translateY(-40%);
       font-family: $logo-font-family;
       text-transform: uppercase;
       font-size: 2rem;
@@ -41,17 +39,17 @@
   }
 
   &__tiles {
-    margin-top: $main-spacing * 2;
+    margin-top: $main-spacing*2;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 94%;
     height: auto;
 
     & .tile {
-      flex-basis: 46%;
+      flex-basis: calc(50% - 5px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -67,16 +65,24 @@
 
       &__left-data {
         &__title {
-        color: $grey-text-color;
-        font-weight: 600;
-        font-size: 0.8rem;
+          color: $grey-text-color;
+          font-weight: 600;
+          font-size: 0.8rem;
+          margin-bottom: $main-spacing/2;
+
+          &--chart {
+            margin-bottom: $main-spacing;
+          }
         }
+
         &__cases {
           font-size: 1.2rem;
         }
+
+        &__chart {
+          padding-bottom: $main-spacing;
+        }
       }
-
-
 
       &__right-data {
         display: flex;
@@ -88,10 +94,18 @@
           font-size: 0.6rem;
         }
       }
+      
+      &--chart {
+        flex-basis: 100%;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        flex-grow: 1;
+        flex-wrap: nowrap;
+        max-height: 30vh;
+        max-width: 100%;
+        margin-bottom: $main-spacing * 2;
+      }  
     }
-  }
-  &__chart-container {
-    margin: $main-spacing * 2 auto;
-    width: 96%;
   }
 }

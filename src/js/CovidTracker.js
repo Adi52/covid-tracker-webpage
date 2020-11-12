@@ -142,39 +142,53 @@ export default class CovidTracker {
         return Math.floor(seconds) + " seconds";
     }
 
-    // calculateArticleDate(date) {
-    //     let articleDate = new Date(date);
-    //     this.timeSince(articleDate);
-    //
-    // }
+    shortenTitle(title) {
+        if (title.length > 90) {
+            return title.substr(0, 100) + '...';
+        } else {
+            return title;
+        }
+    }
 
     addArticle(article) {
         const newArticle = document.createElement('div');
         const source = document.createElement('p');
         const title = document.createElement('a');
+        const containerImage = document.createElement('div');
         const image = document.createElement('img');
-        const date = document.createElement('p');
 
-        newArticle.classList.add('newArticle');
+        const date = document.createElement('p');
+        const leftContent = document.createElement('div');
+        const rightContent = document.createElement('div');
+
+        leftContent.classList.add('article__left-content');
+        rightContent.classList.add('article__right-content');
+        newArticle.classList.add('article');
+
+        newArticle.appendChild(leftContent);
+        newArticle.appendChild(rightContent);
+        rightContent.appendChild(containerImage);
+
         source.classList.add('article__source');
         title.classList.add('article__title');
+        containerImage.classList.add('article__container-image');
         image.classList.add('article__image');
         date.classList.add('article__date');
 
         source.textContent = article['source'];
-        title.textContent = article['title'];
+        title.textContent = this.shortenTitle(article['title']);
         title.href = article['url'];
         image.src = article['image'];
         date.textContent = this.calculateArticleDate(new Date(article['date'])) + ' ago';
 
         this.newsContainer.appendChild(newArticle);
-        newArticle.appendChild(source);
-        newArticle.appendChild(title);
+        leftContent.appendChild(source);
+        leftContent.appendChild(title);
         if (article['image'] !== 'https://s1.reutersmedia.net/resources_v2/images/rcom-default.png?w=800' &&
         article['image'] !== null) {
-            newArticle.appendChild(image);
+            containerImage.appendChild(image);
         }
-        newArticle.appendChild(date);
+        leftContent.appendChild(date);
     }
 
 
@@ -183,5 +197,7 @@ export default class CovidTracker {
         this.newsContainer.textContent = '';
         news.forEach(article => this.addArticle(article));
     }
-
 }
+
+
+// You must add loading screens, sticky input and desktop version!
