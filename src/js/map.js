@@ -63,6 +63,9 @@ export default class Map {
         // Add Western European countries
         this.polygonSeries.exclude = ["AQ"];
         this.polygonSeries.calculateVisualCenter = true;
+
+        this.chart.homeZoomLevel = 1.5;
+
         this.polygonTemplate.tooltipPosition = "fixed";
 
         this.polygonTemplate.tooltipX = this.polygonSeries.visualLatitude;
