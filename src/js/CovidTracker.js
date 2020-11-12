@@ -115,6 +115,39 @@ export default class CovidTracker {
         }
     }
 
+    calculateArticleDate(date) {
+        // stackoverflow <3
+        let seconds = Math.floor((new Date() - date) / 1000);
+        let interval = seconds / 31536000;
+
+        if (interval > 1) {
+            return Math.floor(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return Math.floor(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return Math.floor(interval) + " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+    }
+
+    // calculateArticleDate(date) {
+    //     let articleDate = new Date(date);
+    //     this.timeSince(articleDate);
+    //
+    // }
+
     addArticle(article) {
         const newArticle = document.createElement('div');
         const source = document.createElement('p');
@@ -132,7 +165,7 @@ export default class CovidTracker {
         title.textContent = article['title'];
         title.href = article['url'];
         image.src = article['image'];
-        date.textContent = article['date'];
+        date.textContent = this.calculateArticleDate(new Date(article['date'])) + ' ago';
 
         this.newsContainer.appendChild(newArticle);
         newArticle.appendChild(source);
