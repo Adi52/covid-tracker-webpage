@@ -9,20 +9,26 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Availability](#availability-:computer:)
+* [Availability](#availability-computer)
 * [Technologies](#technologies)
-* [API](#API-:cloud:)
-* [Setup](#setup-:dvd:)
+* [API](#API-cloud)
+* [Setup](#setup-dvd)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Screenshots](#screenshots)
-* [Contact](#contact)
+* [Contact](#contact-e-mail)
 
 ## General info
 
-Do you want know how much cases of covid19 is now in all World, or your Country? You can see it in my website!
+Do you want to know how much cases of covid19 is now all around the World, or in your Country? You can check it on my website!
 
-On this website, you can see the world map first. And below it, data such as deaths, confirmed, active, recovered a chart with the daily increase in infected and the latest news from the world on covid19.
+On this website, you can see the world map first and below it several data such as:
+- death cases, 
+- confirmed cases, 
+- active cases, 
+- recovered cases,
+- chart with the daily increase in infected,
+- the latest news from the world of covid19
 
 You can choose the country you are interested in, on the map. Another way to choose a target is to use an intelligent search engine that will show you all the possibilities.
 
@@ -79,5 +85,5 @@ I wanted to make this type of website because I wanted to apply all the knowledg
   <img src="readme_images/ ">
 </p>
 
-## Contact :envelope:
+## Contact :e-mail:
 Created by [bielinski.dev](https://github.com/adi52) - feel free to contact me!
