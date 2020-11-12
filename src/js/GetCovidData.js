@@ -115,8 +115,9 @@ export default class GetCovidData {
             })
             .then(data => {
                let articles = data['articles'];
-               for (let i = 0; i <= 5; i++) {
+               for (let i = 0; i <= 4; i++) {
                    let article = {
+                       'countryName': countryName,
                        'source': articles[i]['source']['name'],
                        'title': articles[i]['title'],
                        'url': articles[i]['url'],

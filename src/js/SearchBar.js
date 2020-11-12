@@ -80,6 +80,7 @@ export default class SearchBar {
             this.getData(this.countryCodes[index]);
             this.ulCountries.textContent = '';
             e.target.value = this.countryNames[index];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         })
     }
 

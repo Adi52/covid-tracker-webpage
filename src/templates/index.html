@@ -12,7 +12,9 @@
 
   <header class="header">
     <div class="logo">
-      <img class="logo__image" src="images/content/logo.svg" alt="">
+      <a href="#" class="logo__link">
+        <img class="logo__image" src="images/content/logo.svg" alt="">
+      </a>
       <span class="logo__line"></span>
       <h1 class="logo__text">Covid-19</h1>
     </div>
@@ -34,75 +36,79 @@
     </div>
   </section>
 
-  <section class="data">
-    <div class="data__current-country">
-      <img class="data__current-country__image" src="images/content/globe.png" alt="">
-      <h1 class="data__current-country__name">Global</h1>
-    </div>
-
-    <div class="data__tiles">
-      <div class="tile">
-        <div class="tile__left-data">
-          <h3 class="tile__left-data__title">Deaths</h3>
-          <p class="tile__left-data__cases deaths"></p>
-        </div>
-        <div class="tile__right-data">
-          <div class="tile__right-data--more"></div>
-          <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
-          <p class="tile__right-data__difference deaths"></p>
-        </div>
+  <section class="data-and-news">
+    <section class="data">
+      <div class="data__current-country">
+        <img class="data__current-country__image" src="images/content/globe.png" alt="">
+        <h1 class="data__current-country__name">Global</h1>
       </div>
 
-      <div class="tile">
-        <div class="tile__left-data">
-          <h3 class="tile__left-data__title">Confirmed</h3>
-          <p class="tile__left-data__cases confirmed"></p>
+      <div class="data__tiles">
+        <div class="tile">
+          <div class="tile__left-data">
+            <h3 class="tile__left-data__title">Deaths</h3>
+            <p class="tile__left-data__cases deaths"></p>
+          </div>
+          <div class="tile__right-data">
+            <div class="tile__right-data--more"></div>
+            <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
+            <p class="tile__right-data__difference deaths"></p>
+          </div>
         </div>
-        <div class="tile__right-data">
-          <div class="tile__right-data--more"></div>
-          <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
-          <p class="tile__right-data__difference confirmed"></p>
-        </div>
-      </div>
 
-      <div class="tile">
-        <div class="tile__left-data">
-          <h3 class="tile__left-data__title">Active</h3>
-          <p class="tile__left-data__cases active"></p>
+        <div class="tile">
+          <div class="tile__left-data">
+            <h3 class="tile__left-data__title">Confirmed</h3>
+            <p class="tile__left-data__cases confirmed"></p>
+          </div>
+          <div class="tile__right-data">
+            <div class="tile__right-data--more"></div>
+            <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
+            <p class="tile__right-data__difference confirmed"></p>
+          </div>
         </div>
-        <div class="tile__right-data">
 
+        <div class="tile">
+          <div class="tile__left-data">
+            <h3 class="tile__left-data__title">Active</h3>
+            <p class="tile__left-data__cases active"></p>
+          </div>
+          <div class="tile__right-data">
+
+          </div>
         </div>
-      </div>
 
-      <div class="tile">
-        <div class="tile__left-data">
-          <h3 class="tile__left-data__title">Recovered</h3>
-          <p class="tile__left-data__cases recovered"></p>
+        <div class="tile">
+          <div class="tile__left-data">
+            <h3 class="tile__left-data__title">Recovered</h3>
+            <p class="tile__left-data__cases recovered"></p>
+          </div>
+          <div class="tile__right-data">
+            <div class="tile__right-data--more"></div>
+            <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
+            <p class="tile__right-data__difference recovered"></p>
+          </div>
         </div>
-        <div class="tile__right-data">
-          <div class="tile__right-data--more"></div>
-          <div class="tile__right-data__icon"><i class="fas fa-arrow-up"></i></div>
-          <p class="tile__right-data__difference recovered"></p>
-        </div>
-      </div>
 
 
-      <div class="tile tile--chart">
+        <div class="tile tile--chart">
           <h3 class="tile__left-data__title tile__left-data__title--chart">Daily new cases</h3>
           <canvas class="tile__left-data__chart" id="myChart"></canvas>
+        </div>
       </div>
-    </div>
 
 
+    </section>
+
+    <section class="news">
+      <div class="news__title">Top news</div>
+      <div class="news__articles">
+
+      </div>
+    </section>
   </section>
 
-  <section class="news">
-    <div class="news__title">Top news</div>
-    <div class="news__articles">
 
-    </div>
-  </section>
 
 
 </body>

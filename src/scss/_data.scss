@@ -7,8 +7,13 @@
   background-color: $foreground-color;
   border-radius: $main-spacing;
   position: relative;
-  width: 99vw;
+  flex-basis: 99%;
   margin: 90px auto 0 auto;
+
+  @include bp(large) {
+    flex-basis: 68%;
+    margin: $main-spacing * 12 auto $main-spacing auto;
+  }
 
 
   &__current-country {
@@ -35,6 +40,10 @@
       color: $logo-text-color;
       font-weight: bold;
       letter-spacing: 1px;
+
+      @include bp(large) {
+        font-size: 2.5rem;
+      }
     }
   }
 
@@ -89,9 +98,17 @@
         align-items: center;
         font-size: 0.7rem;
 
+        @include bp(large) {
+          font-size: 1rem;
+        }
+
         &__icon {
           margin-right: $main-spacing/3;
           font-size: 0.6rem;
+
+          @include bp(large) {
+            font-size: 0.8rem;
+          }
         }
       }
       

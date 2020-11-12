@@ -143,14 +143,19 @@ export default class CovidTracker {
     }
 
     shortenTitle(title) {
-        if (title.length > 90) {
-            return title.substr(0, 100) + '...';
+        let stringLength = 60;
+
+        if (title.length > stringLength) {
+            return title.substr(0, stringLength) + '...';
         } else {
             return title;
         }
     }
 
     addArticle(article) {
+        const newsTitle = document.querySelector('.news__title');
+        newsTitle.textContent = article['countryName'].length > 0 ? `Top news for ${article['countryName']}` : 'Top news';
+
         const newArticle = document.createElement('div');
         const source = document.createElement('p');
         const title = document.createElement('a');
@@ -176,8 +181,9 @@ export default class CovidTracker {
         date.classList.add('article__date');
 
         source.textContent = article['source'];
-        title.textContent = this.shortenTitle(article['title']);
         title.href = article['url'];
+        title.target = '_blank';
+
         image.src = article['image'];
         date.textContent = this.calculateArticleDate(new Date(article['date'])) + ' ago';
 
@@ -187,6 +193,11 @@ export default class CovidTracker {
         if (article['image'] !== 'https://s1.reutersmedia.net/resources_v2/images/rcom-default.png?w=800' &&
         article['image'] !== null) {
             containerImage.appendChild(image);
+            title.textContent = this.shortenTitle(article['title']);
+        } else {
+            leftContent.style.flexBasis = '100%';
+            rightContent.style.flexBasis = '0';
+            title.textContent = article['title'];
         }
         leftContent.appendChild(date);
     }

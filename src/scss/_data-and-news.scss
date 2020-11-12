@@ -1,0 +1,12 @@
+
+.data-and-news {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+
+  @include bp(large) {
+    flex-wrap: nowrap;
+    max-width: 960px;
+  }
+}

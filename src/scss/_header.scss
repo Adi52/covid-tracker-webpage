@@ -3,4 +3,10 @@
   width: 100%;
   height: $header-height;
   background-color: $header-background-color;
+  top: 0;
+  z-index: 3;
+
+  @include bp(large) {
+    position: sticky;
+  }
 }

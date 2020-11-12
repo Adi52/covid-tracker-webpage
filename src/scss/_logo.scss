@@ -9,8 +9,17 @@
 
   margin-left: $main-spacing;
 
-  &__image {
+  @include bp(large) {
+    margin-left: $main-spacing * 15;
+  }
+
+  &__link {
     height: 60%;
+  }
+
+  &__image {
+    height: 100%;
+    cursor: pointer;
   }
 
   &__line {

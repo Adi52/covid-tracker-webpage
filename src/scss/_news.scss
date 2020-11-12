@@ -3,25 +3,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  flex-basis: 99%;
   justify-content: flex-start;
 
   background-color: $foreground-color;
   border-radius: $main-spacing;
   position: relative;
-  width: 99vw;
+
   margin: $main-spacing * 3 auto $main-spacing auto;
   min-height: 300px;
 
+  @include bp(large) {
+    flex-basis: 30%;
+    margin: $main-spacing * 12 auto $main-spacing auto
+  }
+
   &__title {
     width: 94%;
-    text-align: left;
+    text-align: center;
     margin: $main-spacing 0;
     color: $logo-text-color;
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 1px;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 
   }
 
