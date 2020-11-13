@@ -23,12 +23,12 @@
 Do you want to know how much cases of covid19 is now all around the World, or in your Country? You can check it on my website!
 
 On this website, you can see the world map first and below it several data such as:
-- death cases, 
-- confirmed cases, 
-- active cases, 
-- recovered cases,
-- chart with the daily increase in infected,
-- the latest news from the world of covid19
+- death cases; 
+- confirmed cases;
+- active cases; 
+- recovered cases;
+- chart with the daily increase in infected;
+- the latest news from the world of covid19.
 
 You can choose the country you are interested in, on the map. Another way to choose a target is to use an intelligent search engine that will show you all the possibilities.
 
@@ -82,7 +82,7 @@ I wanted to make this type of website because I wanted to apply all the knowledg
 ## Screenshots
 
 <p align="center">
-  <img src="readme_images/ ">
+  <img src="readme_img/covid-tracker.gif">
 </p>
 
 ## Contact :e-mail:
