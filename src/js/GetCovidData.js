@@ -54,6 +54,7 @@ export default class GetCovidData {
             .then(() => {
                 this.callDrawLineChart(dailyNewCasesDate, dailyNewCasesCases);
                 this.main.updateTiles(tilesData);
+                this.getNews('')
                 this.hideLoading(this.tilesLoader);
             })
             .catch(() => {
@@ -114,7 +115,6 @@ export default class GetCovidData {
                 this.main.noData(code);
                 this.hideLoading(this.tilesLoader);
             });
-        // you must add spinner here later
     }
 
     getNews(countryName) {
@@ -125,7 +125,7 @@ export default class GetCovidData {
 
         if (countryName === '') {
             // Get top headlines about covid
-            link = `https://gnews.io/api/v4/top-headlines?search?lang=en&q=covid&max=5&token=${apiKey}`;
+            link = `https://gnews.io/api/v4/top-headlines?lang=en&q=covid&max=5&token=${apiKey}`;
         }
 
         let news = [];

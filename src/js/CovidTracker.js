@@ -14,7 +14,7 @@ export default class CovidTracker {
 
         // Draw line chart with global data at start
         this.getCovidData.getDailyGlobalTimeline();
-        this.getCovidData.getNews('')
+        // this.getCovidData.getNews('')
 
         this.currentCountryName = document.querySelector('.data__current-country__name');
         this.currentCountryFlag = document.querySelector('.data__current-country__image');
